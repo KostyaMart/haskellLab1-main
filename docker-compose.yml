@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: infres-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: infres
+      MYSQL_USER: infres
+      MYSQL_PASSWORD: infres
+      MYSQL_ROOT_PASSWORD: rootpass
+      TZ: Europe/Kyiv
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+volumes:
+  dbdata:
